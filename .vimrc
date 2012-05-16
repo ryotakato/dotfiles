@@ -35,17 +35,30 @@ filetype indent on
 " key map leader
 let QFixHowm_Key = 'g'
 
+" howm root dir
+let QFixHowm_RootDir = '~/howm'
+
 " howm config
-let howm_dir             = '~/howm/main'
+let howm_dir             = QFixHowm_RootDir.'/main'
 let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
 let howm_fileencoding    = 'utf-8'
 let howm_fileformat      = 'unix'
 
-" howm root dir
-let QFixHowm_RootDir = '~/howm'
+" howm MRU config
+let QFixMRU_Filename     = QFixHowm_RootDir.'/.qfixmru'
+
+" howm keyword config
+let QFixHowm_keywordfile = QFixHowm_RootDir.'/.howm-keys'
+
+" howm grep config
+let MyGrep_ExcludeReg = '[~#]$\|\.bak$\|\.o$\|\.obj$\|\.exe$\|[/\\]tags$\|^tags$|[/\\]holiday[/\\]'
 
 " howm memo
 let QFixHowm_FileType = 'qfix_memo'
+
+" howm wiki config
+let QFixHowm_Wiki = 1
+let QFixHowm_WikiDir = 'wiki'
 
 " howm calender holiday
 let QFixHowm_HolidayFile = QFixHowm_RootDir.'/holiday/Sche-Hd-0000-00-00-000000.howm'
