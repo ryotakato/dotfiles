@@ -22,13 +22,42 @@ NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
 " from other
 NeoBundle 'https://github.com/haruyama/scheme.vim.git'
+NeoBundle 'fuenor/qfixhowm'
 
 filetype plugin on
 filetype indent on
 
 
+"----------------------------------------------------
+" qfixhowm.vim
+"----------------------------------------------------
 
-" General
+" key map leader
+let QFixHowm_Key = 'g'
+
+" howm config
+let howm_dir             = '~/howm/main'
+let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+let howm_fileencoding    = 'utf-8'
+let howm_fileformat      = 'unix'
+
+" howm root dir
+let QFixHowm_RootDir = '~/howm'
+
+" howm memo
+let QFixHowm_FileType = 'qfix_memo'
+
+" howm calender holiday
+let QFixHowm_HolidayFile = QFixHowm_RootDir.'/holiday/Sche-Hd-0000-00-00-000000.howm'
+
+" howm todo pattern
+let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
+
+
+"----------------------------------------------------
+" general
+"----------------------------------------------------
+
 set history=50
 
 " Search
@@ -38,8 +67,6 @@ set wrapscan
 set hlsearch
 
 
-" pathogen
-"call pathogen#runtime_append_all_bundles()
 
 " gauche
 autocmd FileType scheme :let is_gauche=1
