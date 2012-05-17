@@ -17,12 +17,14 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'kana/vim-surround'
+NeoBundle 'fuenor/qfixhowm'
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
 " from other
 NeoBundle 'https://github.com/haruyama/scheme.vim.git'
-NeoBundle 'fuenor/qfixhowm'
+
 
 filetype plugin on
 filetype indent on
@@ -73,12 +75,11 @@ let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
 
 set history=50
 
-" Search
+" search
 set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
-
 
 
 " gauche
@@ -86,7 +87,7 @@ autocmd FileType scheme :let is_gauche=1
 autocmd FileType scheme setlocal complete+=k~/.gosh_completions
 
 
-" View
+" view
 syntax on
 colorscheme wombat256
 set number
@@ -94,17 +95,22 @@ set title
 set ruler
 set list
 
+set showcmd
+
 set tabstop=4
 set autoindent
 set expandtab
 set shiftwidth=4
+
+set laststatus=2
+
 " not autoindent By paste
 set paste
 
 " clipboard
 set clipboard+=unnamed,autoselect
 
-" File system
+" file system
 set nobackup
 
 
