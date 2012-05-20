@@ -14,12 +14,14 @@ endif
 " from creator
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
 NeoBundle 'fuenor/qfixhowm'
+NeoBundle 'aharisu/Gauche-Complete'
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
@@ -74,6 +76,8 @@ let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
 "----------------------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
 "----------------------------------------------------
 " general
@@ -128,7 +132,6 @@ endif
 
 " gauche
 autocmd FileType scheme :let is_gauche=1
-autocmd FileType scheme setlocal complete+=k~/.gosh_completions
 
 
 " vim scouter
@@ -144,7 +147,6 @@ command! -bar -bang -nargs=? -complete=file Scouter
 \        echo Scouter(empty(<q-args>) ? $MYVIMRC : expand(<q-args>), <bang>0)
 command! -bar -bang -nargs=? -complete=file GScouter
 \        echo Scouter(empty(<q-args>) ? $MYGVIMRC : expand(<q-args>), <bang>0)
-
 
 
 
