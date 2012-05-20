@@ -20,7 +20,6 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
 NeoBundle 'fuenor/qfixhowm'
-
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
@@ -70,18 +69,57 @@ let QFixHowm_HolidayFile = QFixHowm_RootDir.'/holiday/Sche-Hd-0000-00-00-000000.
 " howm todo pattern
 let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
 
+"----------------------------------------------------
+" neocomplcache.vim
+"----------------------------------------------------
+let g:neocomplcache_enable_at_startup = 1
+
+
 
 "----------------------------------------------------
 " general
 "----------------------------------------------------
 
-set history=50
+set history=50 " command history count
 
 " search
-set ignorecase
-set smartcase
-set wrapscan
-set hlsearch
+set ignorecase " ignore small case and large case
+set smartcase  " if contain large case, noignore case
+set wrapscan   " reword search from file top
+set hlsearch   " search result high light
+
+" view
+syntax on
+colorscheme wombat256
+set number       " show line number
+set title        " show file name as title
+set ruler        " show cursor location
+set list         " show $ as eol
+
+" tab
+set tabstop=4     " tab width equals count of space
+set expandtab     " tab replace space
+set shiftwidth=4  " indent count of space
+
+" status 
+set showcmd       " show key mapping at screen right buttom
+set laststatus=2  " status line show config (2 = always show)
+
+" indent
+set autoindent    " new line indent equals pre line
+set paste         " not autoindent by paste
+
+" clipboard
+set clipboard+=unnamed,autoselect
+
+" file system
+set nobackup      " not need backup file
+
+
+set showmatch     " high light bracket
+
+set encoding=utf-8
+
 
 
 " gauche
@@ -89,36 +127,30 @@ autocmd FileType scheme :let is_gauche=1
 autocmd FileType scheme setlocal complete+=k~/.gosh_completions
 
 
-" view
-syntax on
-colorscheme wombat256
-set number
-set title
-set ruler
-set list
-
-set showcmd
-
-set tabstop=4
-set autoindent
-set expandtab
-set shiftwidth=4
-
-set laststatus=2
-
-" not autoindent By paste
-set paste
-
-" clipboard
-set clipboard+=unnamed,autoselect
-
-" file system
-set nobackup
+" vim scouter
+function! Scouter(file, ...)
+  let pat = '^\s*$\|^\s*"'
+  let lines = readfile(a:file)
+  if !a:0 || !a:1
+    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
+  endif
+  return len(filter(lines,'v:val !~ pat'))
+endfunction
+command! -bar -bang -nargs=? -complete=file Scouter
+\        echo Scouter(empty(<q-args>) ? $MYVIMRC : expand(<q-args>), <bang>0)
+command! -bar -bang -nargs=? -complete=file GScouter
+\        echo Scouter(empty(<q-args>) ? $MYGVIMRC : expand(<q-args>), <bang>0)
 
 
-set showmatch
 
-set encoding=utf-8
+
+
+
+
+
+
+
+
 
 
 
