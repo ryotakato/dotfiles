@@ -94,6 +94,7 @@ set number       " show line number
 set title        " show file name as title
 set ruler        " show cursor location
 set list         " show $ as eol
+set textwidth=0  " not need one line upper limit
 
 " tab
 set tabstop=4     " tab width equals count of space
@@ -106,7 +107,7 @@ set laststatus=2  " status line show config (2 = always show)
 
 " indent
 set autoindent    " new line indent equals pre line
-set paste         " not autoindent by paste
+"set paste        " not autoindent by paste -> if 'set paste', influence to other option and neocomplcache, so not set.
 
 " clipboard
 set clipboard+=unnamed,autoselect
