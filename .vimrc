@@ -14,11 +14,13 @@ endif
 " from creator
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
 NeoBundle 'fuenor/qfixhowm'
+
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
