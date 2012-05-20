@@ -75,7 +75,6 @@ let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
 let g:neocomplcache_enable_at_startup = 1
 
 
-
 "----------------------------------------------------
 " general
 "----------------------------------------------------
@@ -120,6 +119,10 @@ set showmatch     " high light bracket
 
 set encoding=utf-8
 
+" cursor location save
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 
 " gauche
