@@ -76,8 +76,27 @@ let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
 "----------------------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 
+" snippets config 
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
+
+" completion tab select config
+function InsertTabWrapper()
+    if pumvisible()
+        return "\<c-n>"
+    endif
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k\|<\|/'
+        return "\<tab>"
+    elseif exists('&omnifunc') && &omnifunc == ''
+        return "\<c-n>"
+    else
+        return "\<c-x>\<c-o>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+
 
 "----------------------------------------------------
 " general
