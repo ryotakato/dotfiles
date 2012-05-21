@@ -210,11 +210,15 @@ command! -bar -bang -nargs=? -complete=file Scouter
 command! -bar -bang -nargs=? -complete=file GScouter
 \        echo Scouter(empty(<q-args>) ? $MYGVIMRC : expand(<q-args>), <bang>0)
 
+" bracket inoremap 
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
 
 
-
-
-
+" nohlsearch
+nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 
 
 
