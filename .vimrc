@@ -32,6 +32,49 @@ NeoBundle 'https://github.com/haruyama/scheme.vim.git'
 filetype plugin on
 filetype indent on
 
+"----------------------------------------------------
+" unite.vim
+"----------------------------------------------------
+" unite option config
+let g:unite_source_file_mru_limit = 50
+let g:unite_source_file_mru_filename_format = ''
+
+" unite prefix key
+nnoremap [unite] <Nop>
+nmap <Space> [unite]
+
+" file current dir
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" buffer
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+" register
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+" mru
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+" bookmark
+nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+" add bookmark
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+" key mapping unite window
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+ " unite quit
+ nmap <buffer> <ESC> <Plug>(unite_exit)
+ " change to normal mode
+ imap <buffer> jj <Plug>(unite_insert_leave)
+ " delete last path
+ imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+ " open at split horizontal
+ nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+ inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+ " open at split vertical
+ nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+ inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+ " open at here
+ nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+ inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+endfunction"}}}
+
 
 "----------------------------------------------------
 " qfixhowm.vim
