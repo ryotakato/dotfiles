@@ -20,7 +20,6 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
-NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'aharisu/Gauche-Complete'
 " from vim-srcipts
 NeoBundle 'groovy.vim'
@@ -75,44 +74,6 @@ function! s:unite_my_settings()"{{{
  inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 endfunction"}}}
 
-
-"----------------------------------------------------
-" qfixhowm.vim
-"----------------------------------------------------
-
-" key map leader
-let QFixHowm_Key = 'g'
-
-" howm root dir
-let QFixHowm_RootDir = '~/howm'
-
-" howm config
-let howm_dir             = QFixHowm_RootDir.'/main'
-let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-let howm_fileencoding    = 'utf-8'
-let howm_fileformat      = 'unix'
-
-" howm MRU config
-let QFixMRU_Filename     = QFixHowm_RootDir.'/.qfixmru'
-
-" howm keyword config
-let QFixHowm_keywordfile = QFixHowm_RootDir.'/.howm-keys'
-
-" howm grep config
-let MyGrep_ExcludeReg = '[~#]$\|\.bak$\|\.o$\|\.obj$\|\.exe$\|[/\\]tags$\|^tags$|[/\\]holiday[/\\]'
-
-" howm memo
-let QFixHowm_FileType = 'qfix_memo'
-
-" howm wiki config
-let QFixHowm_Wiki = 1
-let QFixHowm_WikiDir = 'wiki'
-
-" howm calender holiday
-let QFixHowm_HolidayFile = QFixHowm_RootDir.'/holiday/Sche-Hd-0000-00-00-000000.howm'
-
-" howm todo pattern
-let QFixHowm_ListReminder_ScheExt = '[-@+!~]'
 
 "----------------------------------------------------
 " neocomplcache.vim
