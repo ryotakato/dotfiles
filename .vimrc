@@ -24,6 +24,7 @@ NeoBundle 'aharisu/Gauche-Complete'
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
+NeoBundle 'vimwiki'
 " from other
 NeoBundle 'https://github.com/haruyama/scheme.vim.git'
 
@@ -100,6 +101,14 @@ function InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+
+"----------------------------------------------------
+" vimwiki
+"----------------------------------------------------
+" wiki home dir -> ~/vimfiles/vimwiki/wiki/
+" html home dir -> ~/vimfiles/vimwiki/html/
+" wiki open by  -> vsplit
+:let g:vimwiki_list = [{'path':'~/vimfiles/vimwiki/wiki/', 'path_html':'~/vimfiles/vimwiki/html/','gohome':'vsplit' }]
 
 
 "----------------------------------------------------
