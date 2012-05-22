@@ -21,6 +21,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
 NeoBundle 'aharisu/Gauche-Complete'
+NeoBundle 'mattn/calendar-vim'
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
