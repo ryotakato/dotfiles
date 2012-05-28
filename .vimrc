@@ -87,19 +87,21 @@ imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
 " completion tab select config
-function InsertTabWrapper()
-    if pumvisible()
-        return "\<c-n>"
-    endif
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-        return "\<tab>"
-    elseif exists('&omnifunc') && &omnifunc == ''
-        return "\<c-n>"
-    else
-        return "\<c-x>\<c-o>"
-    endif
-endfunction
+if !exists("*InsertTabWrapper")
+    function InsertTabWrapper()
+        if pumvisible()
+            return "\<c-n>"
+        endif
+        let col = col('.') - 1
+        if !col || getline('.')[col - 1] !~ '\k\|<\|/'
+            return "\<tab>"
+        elseif exists('&omnifunc') && &omnifunc == ''
+            return "\<c-n>"
+        else
+            return "\<c-x>\<c-o>"
+        endif
+    endfunction
+endif
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 
@@ -189,7 +191,7 @@ inoremap " ""<LEFT>
 
 
 " nohlsearch
-nmap <ESC><ESC> ;nohlsearch<CR><ESC>
+nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
 
 
