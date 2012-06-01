@@ -165,9 +165,23 @@ if has("autocmd")
 endif
 
 
-" gauche
-autocmd FileType scheme :let is_gauche=1
+" Gauche config
+augroup Gauche 
+    autocmd!
+    " variable"
+    autocmd FileType scheme :let is_gauche=1
+    " comment out"
+    autocmd FileType scheme vnoremap ; :s/^/;/<CR>:nohlsearch<CR>
+    autocmd FileType scheme vnoremap ,c :s/^;//<CR>:nohlsearch<CR>
+augroup END
 
+" vim config
+augroup Vim 
+    autocmd!
+    " comment out"
+    autocmd FileType vim vnoremap ," :s/^/\"/<CR>:nohlsearch<CR>
+    autocmd FileType vim vnoremap ,c :s/^"//<CR>:nohlsearch<CR>
+augroup END
 
 " vim scouter
 function! Scouter(file, ...)
@@ -183,16 +197,14 @@ command! -bar -bang -nargs=? -complete=file Scouter
 command! -bar -bang -nargs=? -complete=file GScouter
 \        echo Scouter(empty(<q-args>) ? $MYGVIMRC : expand(<q-args>), <bang>0)
 
-" bracket inoremap 
+" bracket inoremap (vnoremap is no need, because surround.vim) 
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 
-
 " nohlsearch
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
-
 
 
 
