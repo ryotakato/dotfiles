@@ -118,6 +118,9 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " general
 "----------------------------------------------------
 
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,default,sjis,latin1,iso-2022-jp,euc-jp
+
 set history=50 " command history count
 
 " search
@@ -157,7 +160,6 @@ set nobackup      " not need backup file
 
 set showmatch     " high light bracket
 
-set encoding=utf-8
 
 " cursor location save
 if has("autocmd")
