@@ -1,7 +1,6 @@
 " .vimrc
 
-"----------------------------------------------------
-" neobundle.vim
+" neobundle.vim "{{{
 "----------------------------------------------------
 set nocompatible
 filetype off
@@ -18,10 +17,13 @@ NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
 NeoBundle 'aharisu/Gauche-Complete'
 NeoBundle 'mattn/calendar-vim'
+NeoBundle 'LeafCage/foldCC'
+
 " from vim-srcipts
 NeoBundle 'groovy.vim'
 NeoBundle 'sudo.vim'
@@ -33,8 +35,10 @@ NeoBundle 'https://github.com/haruyama/scheme.vim.git'
 filetype plugin on
 filetype indent on
 
-"----------------------------------------------------
-" unite.vim
+"}}}
+
+
+" unite.vim "{{{
 "----------------------------------------------------
 " unite option config
 let g:unite_source_file_mru_limit = 50
@@ -75,10 +79,19 @@ function! s:unite_my_settings()"{{{
  nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
  inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 endfunction"}}}
+"}}}
 
 
+" vimfiler "{{{
 "----------------------------------------------------
-" neocomplcache.vim
+" default explorer"
+let g:vimfiler_as_default_explorer = 1
+" edit file by tabedit.
+let g:vimfiler_edit_action = 'tabopen'
+"}}}
+
+
+" neocomplcache.vim "{{{
 "----------------------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 
@@ -86,7 +99,7 @@ let g:neocomplcache_enable_at_startup = 1
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
-" completion tab select config
+" completion tab select config "{{{
 if !exists("*InsertTabWrapper")
     function InsertTabWrapper()
         if pumvisible()
@@ -103,19 +116,29 @@ if !exists("*InsertTabWrapper")
     endfunction
 endif
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+"}}}
+"}}}
 
 
-"----------------------------------------------------
-" vimwiki
+" vimwiki "{{{
 "----------------------------------------------------
 " wiki home dir -> ~/vimfiles/vimwiki/wiki/
 " html home dir -> ~/vimfiles/vimwiki/html/
 " wiki open by  -> vsplit
 :let g:vimwiki_list = [{'path':'~/vimfiles/vimwiki/wiki/', 'path_html':'~/vimfiles/vimwiki/html/','gohome':'vsplit' }]
+"}}}
 
 
+" foldCC "{{{
 "----------------------------------------------------
-" general
+set foldtext=FoldCCtext()
+set foldcolumn=0
+set fillchars=vert:\|
+"}}}
+
+
+
+" general "{{{
 "----------------------------------------------------
 
 set encoding=utf-8
@@ -160,14 +183,17 @@ set nobackup      " not need backup file
 
 set showmatch     " high light bracket
 
+" foldmethod
+set foldmethod=marker 
 
-" cursor location save
+
+" cursor location save "{{{
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+endif"}}}
 
 
-" Gauche config
+" Gauche config "{{{
 augroup Gauche 
     autocmd!
     " variable"
@@ -175,17 +201,17 @@ augroup Gauche
     " comment out"
     autocmd FileType scheme vnoremap ; :s/^/;/<CR>:nohlsearch<CR>
     autocmd FileType scheme vnoremap ,c :s/^;//<CR>:nohlsearch<CR>
-augroup END
+augroup END"}}}
 
-" vim config
+" vim config "{{{
 augroup Vim 
     autocmd!
     " comment out"
     autocmd FileType vim vnoremap ," :s/^/\"/<CR>:nohlsearch<CR>
     autocmd FileType vim vnoremap ,c :s/^"//<CR>:nohlsearch<CR>
-augroup END
+augroup END"}}}
 
-" vim scouter
+" vim scouter "{{{
 function! Scouter(file, ...)
   let pat = '^\s*$\|^\s*"'
   let lines = readfile(a:file)
@@ -198,6 +224,8 @@ command! -bar -bang -nargs=? -complete=file Scouter
 \        echo Scouter(empty(<q-args>) ? $MYVIMRC : expand(<q-args>), <bang>0)
 command! -bar -bang -nargs=? -complete=file GScouter
 \        echo Scouter(empty(<q-args>) ? $MYGVIMRC : expand(<q-args>), <bang>0)
+"}}}
+
 
 " bracket inoremap (vnoremap is no need, because surround.vim) 
 inoremap { {}<LEFT>
@@ -208,7 +236,7 @@ inoremap " ""<LEFT>
 " nohlsearch
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
-
+"}}}
 
 
 
