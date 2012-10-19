@@ -20,7 +20,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
-NeoBundle 'aharisu/Gauche-Complete'
+NeoBundle 'aharisu/vim-gdev'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'LeafCage/foldCC'
 
