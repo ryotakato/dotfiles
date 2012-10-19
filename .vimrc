@@ -126,6 +126,12 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " html home dir -> ~/vimfiles/vimwiki/html/
 " wiki open by  -> vsplit
 :let g:vimwiki_list = [{'path':'~/vimfiles/vimwiki/wiki/', 'path_html':'~/vimfiles/vimwiki/html/','gohome':'vsplit' }]
+
+augroup VimWikiTemplate
+    autocmd!
+    autocmd BufNewFile ~/vimfiles/vimwiki/wiki/*.wiki 0r ~/vimfiles/vimwiki/wiki/template
+augroup END
+
 "}}}
 
 
