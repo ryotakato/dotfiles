@@ -181,10 +181,10 @@ set ruler        " show cursor location
 set list         " show $ as eol
 set textwidth=0  " not need one line upper limit
 
-if (has('unix'))
-  colorscheme wombat256mod
-elseif(has('macunix'))
+if(has('macunix'))
   colorscheme wombat256
+elseif (has('unix'))
+  colorscheme wombat256mod
 endif
 
 " tab
