@@ -23,6 +23,8 @@ NeoBundle 'kana/vim-surround'
 NeoBundle 'aharisu/vim-gdev'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'LeafCage/foldCC'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tsukkee/unite-help'
 
 " from vim-srcipts
 NeoBundle 'groovy.vim'
@@ -30,6 +32,8 @@ NeoBundle 'sudo.vim'
 NeoBundle 'vimwiki'
 " from other
 NeoBundle 'https://github.com/haruyama/scheme.vim.git'
+" from me
+NeoBundle 'ryotakato/unite-mongodb'
 
 
 filetype plugin on
@@ -60,6 +64,14 @@ nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
 " add bookmark
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+" line
+nnoremap <silent> [unite]l :<C-u>Unite line<CR>
+" grep
+nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
+" help
+nnoremap <silent> [unite]h :<C-u>Unite help<CR>
+" mongodb
+nnoremap <silent> [unite]d :<C-u>Unite mongodb<CR>
 " key mapping unite window
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
@@ -69,6 +81,7 @@ function! s:unite_my_settings()"{{{
  imap <buffer> jj <Plug>(unite_insert_leave)
  " delete last path
  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+ nmap <buffer> .. <Plug>(unite_delete_backward_path) 
  " open at split horizontal
  nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
  inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
@@ -78,6 +91,8 @@ function! s:unite_my_settings()"{{{
  " open at here
  nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
  inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+ " unite mongodb mapping
+ nmap <buffer> m <Plug>(unite_mongodb_back)
 endfunction"}}}
 "}}}
 
@@ -160,12 +175,17 @@ set hlsearch   " search result high light
 
 " view
 syntax on
-colorscheme wombat256
 set number       " show line number
 set title        " show file name as title
 set ruler        " show cursor location
 set list         " show $ as eol
 set textwidth=0  " not need one line upper limit
+
+if (has('unix'))
+  colorscheme wombat256mod
+elseif(has('macunix'))
+  colorscheme wombat256
+endif
 
 " tab
 set tabstop=4     " tab width equals count of space
