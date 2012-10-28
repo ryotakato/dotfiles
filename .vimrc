@@ -25,6 +25,9 @@ NeoBundle 'mattn/calendar-vim'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tsukkee/unite-help'
+NeoBundle 'pekepeke/titanium-vim'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'kchmck/vim-coffee-script'
 
 " from vim-srcipts
 NeoBundle 'groovy.vim'
@@ -132,6 +135,14 @@ if !exists("*InsertTabWrapper")
 endif
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "}}}
+"}}}
+
+
+" quickrun "{{{
+
+let g:quickrun_config = {}
+set splitright
+
 "}}}
 
 
