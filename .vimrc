@@ -28,6 +28,7 @@ NeoBundle 'tsukkee/unite-help'
 NeoBundle 'pekepeke/titanium-vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'marutanm/cocoa.vim'
 
 " from vim-srcipts
 NeoBundle 'groovy.vim'
@@ -117,6 +118,12 @@ let g:neocomplcache_enable_at_startup = 1
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
+" SuperTab like snippets behavior.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+
 " completion tab select config "{{{
 if !exists("*InsertTabWrapper")
     function InsertTabWrapper()
@@ -133,7 +140,7 @@ if !exists("*InsertTabWrapper")
         endif
     endfunction
 endif
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+""inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "}}}
 "}}}
 
