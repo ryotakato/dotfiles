@@ -277,13 +277,6 @@ augroup Gauche
     autocmd FileType scheme vnoremap ,c :s/^;//<CR>:nohlsearch<CR>
 augroup END"}}}
 
-" Objective-C config "{{{
-augroup ObjetiveC
-    autocmd!
-    autocmd FileType objc nmap <C-h> <M-D-Up>
-    autocmd FileType objc nmap <TAB>0 <D-0>
-augroup END"}}}
-
 " vim config "{{{
 augroup Vim 
     autocmd!
