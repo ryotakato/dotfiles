@@ -230,6 +230,10 @@ set showmatch     " high light bracket
 " foldmethod
 set foldmethod=marker 
 
+" backspace
+set backspace=indent,eol,start
+
+
 
 " cursor location save "{{{
 if has("autocmd")
