@@ -27,6 +27,7 @@ NeoBundle 'ryotakato/unite-mongodb'
 NeoBundle 'sudo.vim'
 NeoBundle 'vimwiki'
 NeoBundle 'deris/columnjump'
+NeoBundle 'vim-jp/vital.vim'
 
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
