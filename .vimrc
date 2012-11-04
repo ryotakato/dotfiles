@@ -26,6 +26,7 @@ NeoBundle 'LeafCage/foldCC'
 NeoBundle 'ryotakato/unite-mongodb'
 NeoBundle 'sudo.vim'
 NeoBundle 'vimwiki'
+NeoBundle 'deris/columnjump'
 
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
@@ -197,6 +198,12 @@ set foldcolumn=0
 set fillchars=vert:\|
 "}}}
 
+
+" columnjump "{{{
+"----------------------------------------------------
+nnoremap <c-k> <Plug>(columnjump-backward)
+nnoremap <c-j> <Plug>(columnjump-forward)
+"}}}
 
 
 " general "{{{
