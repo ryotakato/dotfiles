@@ -10,34 +10,56 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.vim/bundle/automatic/'))
 endif
 
-" from creator
+" plugins
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tsukkee/unite-help'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
-NeoBundle 'aharisu/vim-gdev'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'LeafCage/foldCC'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'pekepeke/titanium-vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'marutanm/cocoa.vim'
-
-" from vim-srcipts
-NeoBundle 'groovy.vim'
+NeoBundle 'ryotakato/unite-mongodb'
 NeoBundle 'sudo.vim'
 NeoBundle 'vimwiki'
-" from other
-NeoBundle 'https://github.com/haruyama/scheme.vim.git'
-" from me
-NeoBundle 'ryotakato/unite-mongodb'
+
+NeoBundleLazy 'pekepeke/titanium-vim'
+NeoBundleLazy 'pangloss/vim-javascript'
+NeoBundle 'kchmck/vim-coffee-script' " coffeescript is not default filetype 
+NeoBundleLazy 'marutanm/cocoa.vim'
+NeoBundleLazy 'tpope/vim-rails'
+NeoBundleLazy 'groovy.vim'
+NeoBundleLazy 'aharisu/vim-gdev'
+NeoBundleLazy 'https://github.com/haruyama/scheme.vim.git'
+
+augroup JavaScript_NeoBundle "{{{
+    autocmd!
+    autocmd FileType javascript NeoBundleSource titanium-vim
+    autocmd FileType javascript NeoBundleSource vim-javascript
+augroup END"}}}
+augroup ObjectiveC_NeoBundle "{{{
+    autocmd!
+    autocmd FileType objc NeoBundleSource cocoa.vim
+augroup END"}}}
+augroup Ruby_NeoBundle "{{{
+    autocmd!
+    autocmd FileType ruby NeoBundleSource vim-rails
+augroup END"}}}
+augroup Groovy_NeoBundle "{{{
+    autocmd!
+    autocmd FileType groovy NeoBundleSource groovy.vim
+augroup END"}}}
+augroup Scheme_NeoBundle "{{{
+    autocmd!
+    autocmd FileType scheme NeoBundleSource vim-gdev
+    autocmd FileType scheme NeoBundleSource scheme.vim
+augroup END"}}}
+
+
 
 
 filetype plugin on
