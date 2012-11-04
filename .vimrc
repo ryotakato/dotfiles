@@ -32,7 +32,7 @@ NeoBundle 'vim-jp/vital.vim'
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script' " coffeescript is not default filetype 
-NeoBundleLazy 'marutanm/cocoa.vim'
+NeoBundle 'marutanm/cocoa.vim' " cocoa.vim is work only filetype objc
 NeoBundleLazy 'tpope/vim-rails'
 NeoBundleLazy 'groovy.vim'
 NeoBundleLazy 'aharisu/vim-gdev'
@@ -42,10 +42,6 @@ augroup JavaScript_NeoBundle "{{{
     autocmd!
     autocmd FileType javascript NeoBundleSource titanium-vim
     autocmd FileType javascript NeoBundleSource vim-javascript
-augroup END"}}}
-augroup ObjectiveC_NeoBundle "{{{
-    autocmd!
-    autocmd FileType objc NeoBundleSource cocoa.vim
 augroup END"}}}
 augroup Ruby_NeoBundle "{{{
     autocmd!
@@ -202,8 +198,8 @@ set fillchars=vert:\|
 
 " columnjump "{{{
 "----------------------------------------------------
-nnoremap <c-k> <Plug>(columnjump-backward)
-nnoremap <c-j> <Plug>(columnjump-forward)
+nmap <c-k> <Plug>(columnjump-backward)
+nmap <c-j> <Plug>(columnjump-forward)
 "}}}
 
 
@@ -279,6 +275,13 @@ augroup Gauche
     " comment out"
     autocmd FileType scheme vnoremap ; :s/^/;/<CR>:nohlsearch<CR>
     autocmd FileType scheme vnoremap ,c :s/^;//<CR>:nohlsearch<CR>
+augroup END"}}}
+
+" Objective-C config "{{{
+augroup ObjetiveC
+    autocmd!
+    autocmd FileType objc nmap <C-h> <M-D-Up>
+    autocmd FileType objc nmap <TAB>0 <D-0>
 augroup END"}}}
 
 " vim config "{{{
