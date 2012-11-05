@@ -32,7 +32,7 @@ NeoBundle 'vim-jp/vital.vim'
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script' " coffeescript is not default filetype 
-NeoBundle 'marutanm/cocoa.vim' " cocoa.vim is work only filetype objc
+NeoBundle 'markschabacker/cocoa.vim' " cocoa.vim is work only filetype objc
 NeoBundleLazy 'tpope/vim-rails'
 NeoBundleLazy 'groovy.vim'
 NeoBundleLazy 'aharisu/vim-gdev'
