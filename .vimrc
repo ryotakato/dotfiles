@@ -19,15 +19,18 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tsukkee/unite-help'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'ryotakato/unite-mongodb'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-surround'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'LeafCage/foldCC'
-NeoBundle 'ryotakato/unite-mongodb'
 NeoBundle 'sudo.vim'
 NeoBundle 'vimwiki'
 NeoBundle 'deris/columnjump'
 NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'kana/vim-altr'
+NeoBundle 'kana/vim-smartchr'
 
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
@@ -37,6 +40,10 @@ NeoBundleLazy 'tpope/vim-rails'
 NeoBundleLazy 'groovy.vim'
 NeoBundleLazy 'aharisu/vim-gdev'
 NeoBundleLazy 'https://github.com/haruyama/scheme.vim.git'
+
+
+filetype plugin on
+filetype indent on
 
 augroup JavaScript_NeoBundle "{{{
     autocmd!
@@ -58,10 +65,6 @@ augroup Scheme_NeoBundle "{{{
 augroup END"}}}
 
 
-
-
-filetype plugin on
-filetype indent on
 
 "}}}
 
@@ -94,6 +97,8 @@ nnoremap <silent> [unite]l :<C-u>Unite line<CR>
 nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
 " help
 nnoremap <silent> [unite]h :<C-u>Unite help<CR>
+" outline
+nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
 " mongodb
 nnoremap <silent> [unite]d :<C-u>Unite mongodb<CR>
 " key mapping unite window
@@ -201,6 +206,19 @@ set fillchars=vert:\|
 nmap <c-k> <Plug>(columnjump-backward)
 nmap <c-j> <Plug>(columnjump-forward)
 "}}}
+
+
+" vim-altr "{{{
+"----------------------------------------------------
+nmap <c-a>  <Plug>(altr-forward)
+"}}}
+
+
+" vim-smartchr "{{{
+"----------------------------------------------------
+inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
+"}}}
+
 
 
 " general "{{{
