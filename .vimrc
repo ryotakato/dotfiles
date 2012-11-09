@@ -331,6 +331,9 @@ inoremap " ""<LEFT>
 " nohlsearch
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
+" help cursol word
+nnoremap hw :<C-u>help<Space><C-r><C-w><CR>
+
 "}}}
 
 
