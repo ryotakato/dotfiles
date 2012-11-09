@@ -334,6 +334,20 @@ nmap <ESC><ESC> :nohlsearch<CR><ESC>
 " help cursol word
 nnoremap hw :<C-u>help<Space><C-r><C-w><CR>
 
+" macro remap, because q is often misstake
+noremap q <Nop>
+noremap zq q
+noremap @ <Nop>
+noremap z@ @
+
+
+
+
+
+
+
+
+
 "}}}
 
 
