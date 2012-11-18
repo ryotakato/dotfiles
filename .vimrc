@@ -35,6 +35,7 @@ NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'kana/vim-altr'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'LeafCage/lcpeek.vim'
+NeoBundle 'gregsexton/Vomodoro'
 
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
@@ -223,6 +224,12 @@ nmap <c-a>  <Plug>(altr-forward)
 inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
 "}}}
 
+
+" Vomodoro "{{{
+"----------------------------------------------------
+let g:Pomo_ToDoTodayFilePath = expand("$HOME") . '/.vomodoro/todotoday'
+let g:Pomo_ArchiveFilePath = expand("$HOME") . '/.vomodoro/archive'
+"}}}
 
 
 " general "{{{
