@@ -221,7 +221,11 @@ nmap <c-a>  <Plug>(altr-forward)
 
 " vim-smartchr "{{{
 "----------------------------------------------------
-inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
+inoremap <expr> = smartchr#one_of('=', ' = ', ' == ')
+inoremap <expr> ( smartchr#one_of('(', '()')
+inoremap <expr> { smartchr#one_of('{', '{}')
+inoremap <expr> [ smartchr#one_of('[', '[]')
+inoremap <expr> " smartchr#one_of('"', '""')
 "}}}
 
 
@@ -329,12 +333,6 @@ command! -bar -bang -nargs=? -complete=file GScouter
 \        echo Scouter(empty(<q-args>) ? $MYGVIMRC : expand(<q-args>), <bang>0)
 "}}}
 
-
-" bracket inoremap (vnoremap is no need, because surround.vim) 
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
 
 " nohlsearch
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
