@@ -37,6 +37,11 @@ NeoBundle 'kana/vim-altr'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'LeafCage/lcpeek.vim'
 NeoBundle 'gregsexton/Vomodoro'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'rhysd/accelerated-jk'
+NeoBundle 'teramako/jscomplete-vim'
+NeoBundle 'myhere/vim-nodejs-complete'
+NeoBundle 'thinca/vim-localrc'
 
 NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'pangloss/vim-javascript'
@@ -189,7 +194,9 @@ set splitright
 " wiki home dir -> ~/vimfiles/vimwiki/wiki/
 " html home dir -> ~/vimfiles/vimwiki/html/
 " wiki open by  -> vsplit
-:let g:vimwiki_list = [{'path':'~/vimfiles/vimwiki/wiki/', 'path_html':'~/vimfiles/vimwiki/html/','gohome':'vsplit' }]
+let g:vimwiki_list = [{'path':'~/vimfiles/vimwiki/wiki/', 'path_html':'~/vimfiles/vimwiki/html/','gohome':'vsplit' }]
+" .md is not vimwiki, so exclude.
+let g:vimwiki_ext2syntax = {}
 
 augroup VimWikiTemplate
     autocmd!
@@ -235,6 +242,20 @@ inoremap <expr> " smartchr#one_of('"', '""')
 let g:Pomo_ToDoTodayFilePath = expand("$HOME") . '/.vomodoro/todotoday'
 let g:Pomo_ArchiveFilePath = expand("$HOME") . '/.vomodoro/archive'
 "}}}
+
+
+" accelerated_jk "{{{
+"----------------------------------------------------
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+"}}}
+
+autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
+if !exists('g:neocomplcache_omni_functions')
+  let g:neocomplcache_omni_functions = {}
+endif
+let g:neocomplcache_omni_functions.javascript = ['nodejscomplete#CompleteJS', 'javascriptcomplete#CompleteJS']
+let g:node_usejscomplete = 1
 
 
 " general "{{{
