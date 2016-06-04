@@ -1,0 +1,32 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]] # status line
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = { 
+  \   'colorscheme': 'wombat'
+  \ }
+'''
+
+[[plugins]]
+repo = 'LeafCage/foldCC'
+hook_add = '''
+  set foldtext=FoldCCtext()
+  set foldcolumn=0
+  set fillchars=vert:\|
+'''
+
+[[plugins]] # Toml
+repo  = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]] # Japanese doc
+repo = 'vim-jp/vimdoc-ja'
+on_ft = 'help'
