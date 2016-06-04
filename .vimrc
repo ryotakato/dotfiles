@@ -11,13 +11,15 @@ if has('vim_starting')
 endif
 
 " plugins
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc', {'build': { 'mac' : 'make -f make_mac.mak', 'unix' : 'make -f make_unix.mak',},}
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/unite-build'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'ryotakato/unite-outline-objc'
@@ -35,45 +37,57 @@ NeoBundle 'deris/columnjump'
 NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'kana/vim-altr'
 NeoBundle 'kana/vim-smartchr'
-NeoBundle 'LeafCage/lcpeek.vim'
 NeoBundle 'gregsexton/Vomodoro'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'rhysd/accelerated-jk'
-NeoBundle 'teramako/jscomplete-vim'
-NeoBundle 'myhere/vim-nodejs-complete'
 NeoBundle 'thinca/vim-localrc'
+NeoBundle 'kana/vim-smartinput'
+NeoBundle 'tyru/restart.vim'
+NeoBundle 'timcharper/textile.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'kana/vim-metarw'
+NeoBundle 'emonkak/vim-metarw-gist'
+NeoBundle 'hakobe/unite-script-examples'
+NeoBundle 'ryotakato/vim-itunes'
+NeoBundle 'derekwyatt/vim-scala'
 
-NeoBundleLazy 'pekepeke/titanium-vim'
-NeoBundleLazy 'pangloss/vim-javascript'
+NeoBundleLazy 'pekepeke/titanium-vim', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'myhere/vim-nodejs-complete', {'autoload':{'filetypes':['javascript']}}
 NeoBundle 'kchmck/vim-coffee-script' " coffeescript is not default filetype 
 NeoBundle 'markschabacker/cocoa.vim' " cocoa.vim is work only filetype objc
-NeoBundleLazy 'tpope/vim-rails'
-NeoBundleLazy 'groovy.vim'
-NeoBundleLazy 'aharisu/vim-gdev'
-NeoBundleLazy 'https://github.com/haruyama/scheme.vim.git'
+NeoBundleLazy 'tpope/vim-rails', { 'autoload' : {'filetypes' : ['ruby']}}
+NeoBundleLazy 'groovy.vim', { 'autoload' : {'filetypes' : ['groovy']}}
+NeoBundleLazy 'aharisu/vim-gdev', { 'autoload' : {'filetypes' : ['scheme']}}
+NeoBundleLazy 'https://github.com/haruyama/scheme.vim.git', { 'autoload' : {'filetypes' : ['scheme']}}
+NeoBundleLazy 'gauref.vim', { 'autoload' : {'filetypes' : ['scheme']}}
 
 
 filetype plugin on
 filetype indent on
 
-augroup JavaScript_NeoBundle "{{{
-    autocmd!
-    autocmd FileType javascript NeoBundleSource titanium-vim
-    autocmd FileType javascript NeoBundleSource vim-javascript
-augroup END"}}}
-augroup Ruby_NeoBundle "{{{
-    autocmd!
-    autocmd FileType ruby NeoBundleSource vim-rails
-augroup END"}}}
-augroup Groovy_NeoBundle "{{{
-    autocmd!
-    autocmd FileType groovy NeoBundleSource groovy.vim
-augroup END"}}}
-augroup Scheme_NeoBundle "{{{
-    autocmd!
-    autocmd FileType scheme NeoBundleSource vim-gdev
-    autocmd FileType scheme NeoBundleSource scheme.vim
-augroup END"}}}
+"augroup JavaScript_NeoBundle "{{{
+"    autocmd!
+"    autocmd FileType javascript NeoBundleSource titanium-vim
+"    autocmd FileType javascript NeoBundleSource vim-javascript
+"augroup END"}}}
+"augroup Ruby_NeoBundle "{{{
+"    autocmd!
+"    autocmd FileType ruby NeoBundleSource vim-rails
+"augroup END"}}}
+"augroup Groovy_NeoBundle "{{{
+"    autocmd!
+"    autocmd FileType groovy NeoBundleSource groovy.vim
+"augroup END"}}}
+"augroup Scheme_NeoBundle "{{{
+"    autocmd!
+"    autocmd FileType scheme NeoBundleSource vim-gdev
+"    autocmd FileType scheme NeoBundleSource scheme.vim
+"augroup END"}}}
 
 
 
@@ -146,38 +160,44 @@ let g:vimfiler_edit_action = 'tabopen'
 "}}}
 
 
-" neocomplcache.vim "{{{
+" neocomplete.vim "{{{
 "----------------------------------------------------
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 
-" snippets config 
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'javascript' : $HOME.'/.vim/dict/jquery.dict'.','.$HOME.'/.vim/dict/javascript.dict'
+    \ }
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+"}}}
+
+
+" neosnippet.vim "{{{
+"----------------------------------------------------
+
+" <TAB>: completion.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
 " SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><CR> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
 
-" completion tab select config "{{{
-if !exists("*InsertTabWrapper")
-    function InsertTabWrapper()
-        if pumvisible()
-            return "\<c-n>"
-        endif
-        let col = col('.') - 1
-        if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-            return "\<tab>"
-        elseif exists('&omnifunc') && &omnifunc == ''
-            return "\<c-n>"
-        else
-            return "\<c-x>\<c-o>"
-        endif
-    endfunction
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
 endif
-""inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-"}}}
+
+
 "}}}
 
 
@@ -223,17 +243,17 @@ nmap <c-j> <Plug>(columnjump-forward)
 
 " vim-altr "{{{
 "----------------------------------------------------
-nmap <c-a>  <Plug>(altr-forward)
+"nmap <c-a>  <Plug>(altr-forward)
 "}}}
 
 
 " vim-smartchr "{{{
 "----------------------------------------------------
 inoremap <expr> = smartchr#one_of('=', ' = ', ' == ')
-inoremap <expr> ( smartchr#one_of('(', '()')
-inoremap <expr> { smartchr#one_of('{', '{}')
-inoremap <expr> [ smartchr#one_of('[', '[]')
-inoremap <expr> " smartchr#one_of('"', '""')
+"inoremap <expr> ( smartchr#one_of('(', '()<LEFT>')
+"inoremap <expr> { smartchr#one_of('{', '{}<LEFT>')
+"inoremap <expr> [ smartchr#one_of('[', '[]<LEFT>')
+"inoremap <expr> " smartchr#one_of('"', '""<LEFT>')
 "}}}
 
 
@@ -250,13 +270,45 @@ nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 "}}}
 
-autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
-let g:neocomplcache_omni_functions.javascript = ['nodejscomplete#CompleteJS', 'javascriptcomplete#CompleteJS']
-let g:node_usejscomplete = 1
 
+" lightline "{{{
+"----------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \ }
+"}}}
+
+
+" gauref "{{{
+"----------------------------------------------------
+let g:gauref_file = $HOME.'/.vim/bundle/automatic/gauref.vim/doc/gauche-refj.txt'
+"}}}
+
+
+" gitgutter "{{{
+"----------------------------------------------------
+
+augroup MyGitgutter "{{{
+    autocmd!
+    autocmd FileType * hi SignColumn ctermbg=234
+    autocmd FileType * hi GitGutterAddDefault ctermbg=234
+    autocmd FileType * hi GitGutterChangeDefault ctermbg=234
+    autocmd FileType * hi GitGutterDeleteDefault ctermbg=234
+    autocmd FileType * hi GitGutterChangeDeleteDefault ctermbg=234
+augroup END"}}}
+
+
+"}}}
+
+let g:metarw_gist_user = 'ryotakato'
+let g:metarw_gist_token = '2f009e1a2f1893e3623468d2b844fad85767d923'
+
+autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
+if !exists('g:neocomplete#sources#omni#functions')
+  let g:neocomplete#sources#omni#functions = {}
+endif
+let g:neocomplete#sources#omni#functions.javascript = ['nodejscomplete#CompleteJS']
+let g:node_usejscomplete = 0
 
 " general "{{{
 "----------------------------------------------------
@@ -281,8 +333,10 @@ set list         " show $ as eol
 set textwidth=0  " not need one line upper limit
 
 if(has('macunix'))
+  set t_Co=256
   colorscheme wombat256
 elseif (has('unix'))
+  set t_Co=256
   colorscheme wombat256mod
 endif
 
@@ -315,12 +369,10 @@ set foldmethod=marker
 set backspace=indent,eol,start
 
 
-
 " cursor location save "{{{
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif"}}}
-
 
 " Gauche config "{{{
 augroup Gauche 
@@ -360,7 +412,7 @@ command! -bar -bang -nargs=? -complete=file GScouter
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
 " help cursol word
-nnoremap hw :<C-u>help<Space><C-r><C-w><CR>
+"nnoremap hw :<C-u>help<Space><C-r><C-w><CR>
 
 " macro remap, because q is often misstake
 noremap q <Nop>
@@ -368,7 +420,14 @@ noremap zq q
 noremap @ <Nop>
 noremap z@ @
 
-
+inoremap <Right> <Nop>
+inoremap <Left> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+nnoremap <Right> gt
+nnoremap <Left> gT
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
 
 
 
@@ -379,5 +438,15 @@ noremap z@ @
 "}}}
 
 
+command! -bar RestartWithSession
+\   let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
+\   | Restart
 
+if has('gui_macvim') && has('kaoriya')
+  let s:ruby_libdir = system("ruby -rrbconfig -e 'print RbConfig::CONFIG[\"libdir\"]'")
+  let s:ruby_libruby = s:ruby_libdir . '/libruby.dylib'
+  if filereadable(s:ruby_libruby)
+    let $RUBY_DLL = s:ruby_libruby
+  endif
+endif
 

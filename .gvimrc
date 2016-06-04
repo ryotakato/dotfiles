@@ -1,7 +1,7 @@
 if has('gui_macvim')
   
     " transparency
-    set transparency=10
+    set transparency=0
 
     " not display toolbar
     set guioptions-=t
