@@ -86,7 +86,7 @@ set autoindent    " new line indent equals pre line
 "set paste        " not autoindent by paste -> if 'set paste', influence to other option and neocomplcache, so not set.
 
 " clipboard
-"set clipboard+=unnamed,autoselect TODO neovim not working
+set clipboard+=unnamed,unnamedplus
 
 " file system
 set nobackup      " not need backup file
@@ -124,6 +124,15 @@ augroup Vim
     autocmd FileType vim vnoremap ,c :s/^"//<CR>:nohlsearch<CR>
 augroup END"}}}
 
+" python config "{{{
+augroup Python
+    autocmd!
+    " indent "
+    autocmd FileType python setlocal shiftwidth=2
+augroup END"}}}
+
+" terminal-mode to normal-mode
+tnoremap <silent> <ESC> <C-\><C-n>
 
 " nohlsearch
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
@@ -147,9 +156,22 @@ nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 
 
+let g:python3_host_prog = expand('~/nvim_python3/.venv/bin/python3')
 
 
 
+
+
+" netrw config "{{{
+" always tree view
+let g:netrw_liststyle = 3
+" vertical windows is right
+let g:netrw_altv = 1
+" horizontal windows is top
+let g:netrw_alto = 0
+" preview is vertical
+let g:netrw_preview=1
+"}}}
 
 
 "}}}
