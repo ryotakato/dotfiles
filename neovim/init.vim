@@ -66,7 +66,7 @@ set textwidth=0  " not need one line upper limit
 
 if(has('macunix'))
   set t_Co=256
-  colorscheme wombat256
+  colorscheme wombat256mod
 elseif (has('unix'))
   set t_Co=256
   colorscheme wombat256mod
