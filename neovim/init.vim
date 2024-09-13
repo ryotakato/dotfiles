@@ -100,6 +100,9 @@ set foldmethod=marker
 " backspace
 set backspace=indent,eol,start
 
+" nowrap
+set nowrap
+
 
 " cursor location save "{{{
 if has("autocmd")
