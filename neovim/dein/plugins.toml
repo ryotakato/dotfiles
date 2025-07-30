@@ -75,3 +75,13 @@ repo = 'keaising/im-select.nvim'
 lua_add = '''
   require("im_select").setup({})
 '''
+
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['nvim-lua/plenary.nvim']
+
+

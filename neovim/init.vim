@@ -131,7 +131,8 @@ augroup END"}}}
 augroup Python
     autocmd!
     " indent "
-    autocmd FileType python setlocal shiftwidth=2
+    " commentout, because 4 is standard in pep
+    "autocmd FileType python setlocal shiftwidth=2
 augroup END"}}}
 
 " terminal-mode to normal-mode
