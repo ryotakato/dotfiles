@@ -11,6 +11,6 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   keys = {
     { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit in the current working directory.' },
-    { '<leader>lc', '<cmd>LazyGitCurrentFile<cr>', desc = 'LazyGit in the project root of the current file.' },
+    { '<leader>lg', '<cmd>LazyGitCurrentFile<cr>', desc = 'LazyGit in the project root of the current file.' },
   },
 }
