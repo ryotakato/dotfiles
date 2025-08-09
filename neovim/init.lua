@@ -114,7 +114,8 @@ require("config.lazy")
 -- ===============================
 -- Colorscheme
 -- ===============================
-vim.cmd[[colorscheme kanagawa-wave]]
+--vim.cmd[[colorscheme kanagawa-wave]]
+vim.cmd[[colorscheme wombat_lush]]
 
 
 
