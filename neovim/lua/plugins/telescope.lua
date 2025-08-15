@@ -8,6 +8,7 @@ return {
     { '<leader>b', '<cmd>Telescope buffers<cr>', desc = 'Telescope Buffers' },
     { '<leader>h', '<cmd>Telescope help_tags<cr>', desc = 'Telescope Help Tags' },
     { '<leader>r', '<cmd>Telescope resume<cr>', desc = 'Telescope Previous search' },
+    { '<leader>c', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'Telescope Current buffer fuzyy find' },
   },
   config = function() 
     local actions = require("telescope.actions")
