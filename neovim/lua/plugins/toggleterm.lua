@@ -31,7 +31,7 @@ return {
       todotui:toggle()
     end
 
-    vim.api.nvim_set_keymap("n", "<leader>td", "<cmd>lua _todotui_toggle()<CR>", { noremap = true, silent = true})
+    vim.api.nvim_set_keymap("n", "<leader>do", "<cmd>lua _todotui_toggle()<CR>", { noremap = true, silent = true})
 
     --local Terminal  = require('toggleterm.terminal').Terminal
     --local yazi = Terminal:new({ cmd = "yazi", hidden = true, direction = "float", })
